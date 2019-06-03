@@ -23,7 +23,7 @@ service_experiments:
     description: "NFV Benchmark Zoo Experiment"
     repetitions: 20
     time_limit: 120 # seconds per experiment
-    time_warmup: 90  # ATTENTION: The emqx broker needs super long to start.
+    time_warmup: 120  # ATTENTION: The emqx broker needs super long to start.
     # NSD to be used (vendor.name.version reference)
     target:
       vendor: "de.upb"
