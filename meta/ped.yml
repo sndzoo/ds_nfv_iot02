@@ -22,8 +22,8 @@ service_experiments:
   - name: "zoo_iot02"
     description: "NFV Benchmark Zoo Experiment"
     repetitions: 20
-    time_limit: 60 # seconds per experiment
-    time_warmup: 90  # ATTENTION: The emqx broker needs super long to start.
+    time_limit: 120 # seconds per experiment
+    time_warmup: 120  # ATTENTION: The emqx broker needs super long to start.
     # NSD to be used (vendor.name.version reference)
     target:
       vendor: "de.upb"
@@ -52,10 +52,10 @@ service_experiments:
       - function: "mp.input"
         cmd_start: [
           # "malaria publish -t -n 10000 -H 20.0.0.254 -q 0 --json /tngbench_share/malaria.json",  # send timing data, qos=0 BUG inv. loop https://github.com/etactica/mqtt-malaria/blob/1a781030ac896d537b0d0583ae2291d89364c577/beem/load.py#L81
-          "malaria publish -t -n 10000 -H 20.0.0.254 -q 1 --json /tngbench_share/malaria.json",  # send timing data, qos=1
-          "malaria publish -t -n 10000 -H 20.0.0.254 -q 2 --json /tngbench_share/malaria.json",  # send timing data, qos=2
-          "malaria publish -s 10 -n 10000 -H 20.0.0.254 --json /tngbench_share/malaria.json",  # small messages
-          "malaria publish -s 10000 -n 10000 -H 20.0.0.254 --json /tngbench_share/malaria.json"  # large messages
+          "malaria publish -t -n 20000 -H 20.0.0.254 -q 1 --json /tngbench_share/malaria.json",  # send timing data, qos=1
+          "malaria publish -t -n 20000 -H 20.0.0.254 -q 2 --json /tngbench_share/malaria.json",  # send timing data, qos=2
+          "malaria publish -s 10 -n 20000 -H 20.0.0.254 --json /tngbench_share/malaria.json",  # small messages
+          "malaria publish -s 10000 -n 20000 -H 20.0.0.254 --json /tngbench_share/malaria.json"  # large messages
         ]
         cmd_stop: "./stop.sh"
         cpu_bw: null  # float: fraction of CPU time in vim-emu
@@ -64,7 +64,7 @@ service_experiments:
         mem_swap_max: null
         io_bw: null
       - function: "mp.output"
-        cmd_start: "malaria subscribe -n 10000 -N 1 -H 40.0.0.1 --json /tngbench_share/malaria.json"
+        cmd_start: "malaria subscribe -n 20000 -N 1 -H 40.0.0.1 --json /tngbench_share/malaria.json"
         cmd_stop: "./stop.sh"  # dump packet counters to logs
         cpu_bw: null  # float: fraction of CPU time in vim-emu
         cpu_cores: "15"  # string: this is "cpuset_cpu" in vim-emu e.g. ["0, 1"] -> 2 CPUs

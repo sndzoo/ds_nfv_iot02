@@ -1,8 +1,8 @@
-md5: ba1bed431733b5f13950aeb94806c405
-outs:
-- cache: true
-  md5: 7cf812bb9e9bce4e8d9b6b13cc104416
-  metric: false
-  path: data/raw_prometheus_data.tar.gz
-  persist: false
 wdir: ..
+outs:
+- path: data/raw_prometheus_data.tar.gz
+  metric: false
+  cache: true
+  persist: false
+  md5: 17a6fd65f0b384f017df2e7d4399842f
+md5: 2f45b652976c02330cbecbbf8da65306
